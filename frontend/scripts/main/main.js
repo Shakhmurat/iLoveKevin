@@ -10,7 +10,7 @@ $(document).ready(function() {
     autoHeight: true
   });
 
-  $('.form-control').on('change', function () {
+  $('.form-control').on('change keyup', function () {
   	if ($('.js-validate-name').val().length > 0 && +
   		+ $('.js-validate-pass').val().length > 10 && + 
   		+ $('.js-validate-check').is(':checked')) {
