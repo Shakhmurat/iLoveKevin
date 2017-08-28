@@ -4,11 +4,10 @@ import myModule from './module-to-import';
 
 $(document).ready(function() {
 
-  let welcomeFunction = function(name) {
-    console.log('Yo ' + name + ' !');
-  }('Rocketman');
-
-  // imported module
-  myModule('myModule');
+  var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    autoHeight: true
+  });
 });
 
