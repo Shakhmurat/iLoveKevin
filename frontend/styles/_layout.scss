@@ -6,21 +6,149 @@ body {
 
 body {
 	font-family: $font-primary-regular;
+	font-size: 16px;
+	color: $color-primary;
 }
 
 .container {
-  width: 1000px !important;
+  width: 1260px !important;
 }
 
 .header {
-  border: 1px solid $color-gray;
+	padding: 34.5px 0;
+	.title--logo {
+		margin-top: 6px;
+	}
+  a {
+  	float: right;
+  	margin-top: 20px;
+  	font-family: $font-primary-bold;
+  	font-size: 10px;
+  	line-height: 12px;
+  	color: $color-primary;
+  	text-transform: uppercase;
+  	border-bottom: none;
+  	&:hover {
+  		border-bottom: 1px dashed $color-pink;
+  	}
+  	&:last-child {
+  		margin-right: 30px;
+  	}
+  }
 }
 
 .main {
-  margin: 30px 0;
-  border: 1px solid green;
+  margin: 0 0 100px;
+}
+
+.hero-section {
+	position: relative;
+	min-height: 500px;
+	background-color: #D8D8D8;
+}
+
+.hero-bg {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+.hero-info {
+	float: right;
+	max-width: 700px;
+	margin-top: 130px;
+	p {
+		font-size: 20px;
+		line-height: 28px;
+		color: $color-secondary;
+	}
+}
+
+.about, 
+.registration {
+	margin-top: 100px;
+}
+
+.about-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 70px;
+}
+
+.about-list-item-figure {
+	float: left;
+	width: 82px;
+	height: 100%;
+	padding-top: 15px;
+	margin-right: 20px;
+}
+
+.about-list-item {
+	width: 350px;
+	margin-bottom: 40px;
+	p {
+		line-height: 19px;
+	}
+}
+
+.registration {
+	p {
+		max-width: 840px;
+		margin: 35px auto 50px;
+		line-height: 24px;
+		text-align: center;
+	}
 }
 
 .footer {
-  border: 1px solid $color-gray;
+	padding: 50px 0 30px;
+	border-top: 1px solid rgba(0, 37, 67, 0.2);
+	.footer-col {
+		float: left;
+		.title--logo {
+			font-size: 24px;
+			line-height: 28px;
+		}
+		p {
+			font-size: 14px;
+			line-height: 16px;
+		}
+		span {
+			display: inline-block;
+			margin-top: 10px;
+			font-size: 14px;
+			line-height: 16px;
+			text-align: center;
+			color: $color-secondary;
+		}
+		.btn {
+			&:first-child {
+				margin-right: 5px;
+			}
+		}
+		&:nth-child(1) {
+			width: 80%;
+			margin-bottom: 29px;
+			.footer-col-item {
+				float: left;
+				width: 20%;
+			}
+		}
+		&:nth-child(2) {
+			width: 20%;
+			padding-top: 10px;
+			text-align: center;
+		}
+		&:nth-child(3) {
+			width: 100%;
+			text-align: center;
+		}
+		&:nth-child(4) {
+			a {
+				font-size: 14px;
+			}
+		}
+	}
 }
+

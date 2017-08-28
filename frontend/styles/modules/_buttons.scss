@@ -3,43 +3,48 @@
 	font-family: $font-primary-regular;
 	font-weight: normal;
 	font-style: normal;
+	text-transform: uppercase;
+	letter-spacing: 0.7px;
+	color: #fff;
+	border-radius: 5px;
 	outline: none !important;
 	transition: $transition-primary;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	&:active {
+		color: #fff;
 		box-shadow: none;
 	}
-	&:hover,
-	&:active {
-		transition: none;
-	}
-}
-
-.btn--primary {
-	padding: 8px 25px 9px;
-	font-size: 16px;
-	font-weight: 500;
-	color: #fff;
-	background-color: $color-primary;
 	&:focus {
 		color: #fff;
 	}
 	&:hover,
 	&:active {
-		color: $color-primary;
-		background-color: rgba($color-primary, .7);
+		color: #fff;
+		transition: none;
+	}
+}
+
+.btn--primary {
+	min-width: 300px;
+	padding: 18px 12px 16px;
+	font-size: 12px;
+	line-height: 14px;
+	background-color: $color-pink;
+	&.disabled {
+		background-color: $color-pink-secondary;
+		pointer-events: none;
+	}
+	&:hover,
+	&:active {
+		background-color: rgba($color-pink,.8);
 	}
 
 	&.btn--success {
 		// background-color: $color-green;
 		box-shadow: 8px 8px 16px 0 rgba(#07021E, .1);
-		&:focus {
-			color: #fff;
-		}
 		&:hover,
 		&:active {
-			color: #fff;
 			background-color: #4DBE73;
 		}
 		&:active  {
@@ -47,3 +52,25 @@
 		}
 	}
 }
+
+.btn--secondary {
+	min-width: 100px;
+	padding: 9px 0 7px;
+	font-size: 10px;
+	line-height: 12px;
+}
+
+.btn.btn-vk {
+	background-color: #597DA3;
+	&:hover {
+		background-color: rgba(#597DA3,.8);
+	}
+}
+
+.btn.btn-fb {
+	background-color: #3B5998;
+	&:hover {
+		background-color: rgba(#3B5998,.8);
+	}
+}
+

@@ -1,18 +1,22 @@
 
 // fonts
-$font-primary-regular: 'PTSans-Regular', Helvetica, Arial, sans-serif;
-$font-primary-bold: 'PTSans-Bold', Helvetica, Arial, sans-serif;
+$font-primary-regular: 'muller-regular', Helvetica, Arial, sans-serif;
+$font-primary-bold: 'muller-bold', Helvetica, Arial, sans-serif;
+$font-primary-extra-bold: 'muller-extra-bold', Helvetica, Arial, sans-serif;
 
 $font-secondary-regular: Helvetica, Arial, sans-serif;
+$font-secondary-bold: 'geometria', Helvetica, Arial, sans-serif;
 
 $font-icons: 'websymbolsligaregular';
 
 $font-numbers: 'Helvetica Neue', Arial, sans-serif;
 
 // colors
-$color-primary: #000;
-$color-secondary: #000;
+$color-primary: #002543;
+$color-secondary: #525252;
 $color-gray: #e6e6e6;
+$color-pink: #EB3441;
+$color-pink-secondary: rgba(235, 52, 65, 0.5);
 
 // transitions
 $transition-primary: .3s;
