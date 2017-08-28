@@ -1,0 +1,23 @@
+{
+  "name": "rocketfirm-frontend-template",
+  "description": "frontend template for Rocketfirm 2017",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "~1.11.3",
+    "jquery-ui": "~1.11.0",
+    "modernizr": "~2.8.3",
+    "respond": "1.4.2",
+    "font-awesome": "fontawesome#~4.5.0",
+    "animate.css": "~3.5.1",
+    "jquery-file-upload": "~9.6.0",
+    "jquery.maskedinput": "~1.4.1",
+    "nifty-modal": "*",
+    "pace": "pace#~1.0.2",
+    "Jcrop": "jcrop#^2.0.4",
+    "jquery-ui-touch-punch-improved": "^0.3.1",
+    "bootbox.js": "bootbox#~4.4.0",
+    "blockUI": "blockui#*",
+    "fastclick": "~1.0.6"
+  }
+}
