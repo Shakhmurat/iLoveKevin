@@ -53,10 +53,17 @@ body {
 	bottom: 0;
 }
 
+.hero-img-tablet,
+.hero-img-mobile {
+	display: none;
+}
+
 .hero-info {
+	position: relative;
 	float: right;
 	max-width: 700px;
 	margin-top: 130px;
+	z-index: 2;
 	p {
 		font-size: 20px;
 		line-height: 28px;
@@ -119,7 +126,6 @@ body {
 			margin-top: 10px;
 			font-size: 14px;
 			line-height: 16px;
-			text-align: center;
 			color: $color-secondary;
 		}
 		.btn {
