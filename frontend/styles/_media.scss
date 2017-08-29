@@ -202,7 +202,10 @@
 	}
 
 	.hero-info {
-		margin-top: 48px;
+		float: none;
+		margin-top: 68px;
+		margin-right: auto;
+		margin-left: auto;
 		text-align: center;
 		p {
 			font-size: 16px;
