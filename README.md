@@ -35,7 +35,6 @@
 
 
 
-# HTML шаблонизатор **[Nunjucks](https://mozilla.github.io/nunjucks/templating.html)** от Mozilla
-Привыкаем к синтаксису а ля `{% include "_partials/header" %}`, `{% block content %}{% endblock %}`, `{% extends "_partials/variables.njk" %}`. Как обычно, стараемся все повторяющиеся блоки, такие как хэдер, футер, пагинацию, делать паршиалами, и добавлять их в нашу разметку как по мере необходимости. Эти компоненты создаем в папке _partials. Подробнее о синтаксисе и возможностях nunjucks читаем в документации. Темплейты самих сттаниц создаем в папке `layouts/`.
+# HTML шаблонизатор **[Nunjucks]
 
 #### Подсветка синтаксиса в Sublime Text для nunjucks - **Jinja2 (HTML)**   
