@@ -64,21 +64,3 @@ Apache-2.4_vhost.conf
 runtime
 .idea
 
-/web/**
-libs
-
-/web/*.txt
-/web/*.html
-/web/*.ico
-/web/*.png
-/web/images
-/web/styles
-/web/scripts
-/web/fonts/**/*.*
-/web/.htaccess
-/web/media
-/web/assets
-/web/js/apps
-/web/js/pages
-/web/js/init.js
-/web/libs
