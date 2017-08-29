@@ -4,11 +4,27 @@ import myModule from './module-to-import';
 
 $(document).ready(function() {
 
-  let welcomeFunction = function(name) {
-    console.log('Yo ' + name + ' !');
-  }('Rocketman');
+  var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    autoHeight: true
+  });
 
-  // imported module
-  myModule('myModule');
+  $('.form-control').on('change keyup', function () {
+  	if ($('.js-validate-name').val().length > 0 && +
+  		+ $('.js-validate-pass').val().length > 10 && + 
+  		+ $('.js-validate-check').is(':checked')) {
+  		$('.form-inline').find('[type="submit"]').removeClass('disabled');	
+  	} else {
+  		$('.form-inline').find('[type="submit"]').addClass('disabled');
+  	}
+  });
+
+  $('.header a').on('click', function () {
+    $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top
+    }, 500);
+  });
+
 });
 

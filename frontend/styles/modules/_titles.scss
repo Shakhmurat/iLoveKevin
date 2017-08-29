@@ -1,17 +1,39 @@
 
-.title--primary {
-	font-family: $font-primary-regular;
-	font-size: 24px;
-	line-height: 32px;
+.title--logo {
+	display: inline-block;
+	font-family: $font-primary-extra-bold;
+	font-size: 30px;
+	line-height: 35px
+}
+
+.title--hero {
+	margin-bottom: 40px;
+	font-family: $font-secondary-bold;
+	font-size: 44px;
+	line-height: 40px;
 	font-weight: normal;
 	font-style: normal;
+}
+
+.title--primary,
+.title--secondary {
+	font-family: $font-primary-bold;
+	font-size: 36px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.title--primary {
+	line-height: 30px;
 }
 
 .title--secondary {
-	font-family: $font-primary-regular;
-	font-size: 20px;
-	line-height: 26px;
-	font-weight: normal;
-	font-style: normal;
+	line-height: 42px;
+	text-align: center;
 }
 
+.about-list-item-title {
+	font-family: $font-primary-bold;
+	font-size: 16px;
+	line-height: 19px;
+}

@@ -1,11 +1,23 @@
 
 .link {
+	border-bottom: 2px solid $color-pink;
+	color: $color-primary;
+	text-decoration: none;
   transition: $transition-primary;
   &:focus {
-    color: #000;
+    color: $color-primary;
+    text-decoration: none;
   }
   &:hover,
   &:active {
-    color: $color-primary;
+    color: rgba($color-primary,.8);
+    text-decoration: none;
+    transition: none;
   }
+}
+
+a[href^="tel:"] {
+	font-family: $font-primary-bold;
+	color: $color-primary;
+	border: none;
 }

@@ -18,6 +18,7 @@
     "jquery-ui-touch-punch-improved": "^0.3.1",
     "bootbox.js": "bootbox#~4.4.0",
     "blockUI": "blockui#*",
-    "fastclick": "~1.0.6"
+    "fastclick": "~1.0.6",
+    "swiper": "^3.4.2"
   }
 }

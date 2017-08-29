@@ -1,6 +1,307 @@
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (max-width: 1260px) {
+
   .container {
     width: 100% !important;
   }
+
+  .hero-info {
+  	max-width: 500px;
+  }
+
 }
+
+@media (max-width: 1110px) {
+
+  .hero-info {
+  	max-width: 500px;
+  }
+
+	.about-list-item {
+		width: 310px;
+		p {
+			padding-left: 102px;
+		}
+	}
+
+  .footer {
+  	.footer-col {
+  		&:nth-child(2) {
+  			padding-top: 0;
+  			text-align: left;
+  			.btn {
+					display: block;
+					max-width: 100px;
+					&:first-child {
+						margin-bottom: 10px;
+		  		}	
+				}	
+  		}
+  	}
+  }
+
+}
+
+@media (max-width: 1024px) { 
+
+	.header {
+		padding: 18px 0;
+		.title--logo {
+			font-size: 24px;
+			line-height: 28px;
+		}
+		a {
+			margin-top: 16px;
+		}
+	}
+
+	.hero-section {
+		min-height: 597px;
+	}
+	
+	.hero-info {
+		max-width: 356px;
+		margin-top: 64px;
+		margin-right: 15px;
+	}
+	
+	.title--hero {
+		font-size: 32px;
+		line-height: 30px;
+	}
+
+	.hero-img-tablet {
+		display: block;
+	}
+
+	.hero-img-desktop {
+		display: none;
+	}
+
+	.about {
+		margin-top: 43px;
+	}
+
+	.about-list {
+		margin-top: 56px;
+	}
+
+	.title--secondary {
+		font-size: 30px;
+	}
+
+	.about-list-item-figure {
+		float: none;
+		height: auto;
+	}
+	
+	.about-list-item {
+		width: 30%;
+		margin-bottom: 25px;
+		p {
+			padding-left: 0;
+		}
+	}
+	
+	.registration {
+		margin-top: 30px;
+		p {
+			max-width: 696px;
+			margin: 35px auto 35px;
+		}
+	}
+
+	.form-inline {
+		.form-group {
+			display: block;
+			margin-bottom: 10px;
+		}
+		.checkbox {
+			width: 300px;
+			margin: 10px 0 20px;
+			text-align: left;
+			label {
+				padding-right: 15px;
+			}
+			.check {
+				top: -18px;
+				left: -2px;
+			}
+			span {
+				display: inline-block;
+				width: 255px;
+			}
+		}
+	}
+
+	.footer {
+		.footer-col {
+			&:nth-child(1) {
+				width: 100%;
+				.footer-col-item {
+					text-align: center;
+					+ .footer-col-item {
+						margin-top: 25px;
+					}
+					&:first-child,
+					&:last-child {
+						width: 100%;	
+					}
+					&:nth-child(2),
+					&:nth-child(3),
+					&:nth-child(4) {
+						width: 33%;
+					}
+				}
+			}
+			&:nth-child(2) {
+				width: 100%;
+				text-align: center;
+				.btn {
+					display: inline-block;
+					&:first-child {
+						margin-bottom: 0;	
+					}
+				}
+				span {
+					display: block;
+					
+				}
+			}
+			&:nth-child(3) {
+				margin: 40px 0 10px;
+			}
+		}
+	}
+
+}
+
+@media (max-width: 767px) {
+	.header {
+		padding: 8px 0;
+		text-align: center;
+		a {
+			display: none;
+		}
+	}
+		
+	.main {
+    margin: 0 0 49px;
+	}
+
+	.hero-section {
+		min-height: 399px;
+	}
+
+	.hero-img-tablet {
+		display: none;
+	}
+
+	.hero-img-mobile {
+		display: block;
+	}
+
+	.hero-info {
+		float: none;
+		margin-top: 68px;
+		margin-right: auto;
+		margin-left: auto;
+		text-align: center;
+		p {
+			font-size: 16px;
+			line-height: 24px;
+		}
+	}
+		
+	.about {
+		margin-top: 26px;
+	}
+
+	.about-list {
+		display: none;
+	}
+	
+	.swiper-container {
+	  display: block;	
+	}
+
+	.swiper-wrapper {
+		margin-bottom: 45px;
+	}
+
+	.swiper-slide {
+		text-align: center;
+		p {
+			margin: 0;
+		}		
+	}
+	
+	.swiper-pagination-bullet {
+		width: 10px;
+		height: 10px;
+		background-color: $color-primary;
+		opacity: 1;
+	}
+
+	.swiper-pagination-bullet-active {
+		background-color: $color-pink;
+	}
+
+	.about-list-item-figure {
+		width: auto;
+		margin-right: 0;
+		margin-bottom: 25px;
+	}
+
+	.registration {
+		margin-top: 40px;
+	}
+
+	.form-inline {
+		.form-group {
+			padding: 0;
+		}
+		.form-control {
+			width: 290px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.checkbox {
+			width: 290px;
+			margin: 30px auto 20px;
+			label {
+				padding-right: 0;
+			}
+			.check {
+				top: -15px;
+				left: 0;
+			}
+			span {
+				width: 242px;
+			}
+		}
+	}
+
+	.footer {
+		padding: 35px 0 30px;
+		.footer-col {
+			&:first-child {
+				margin-bottom: 33px;
+			}
+			&:last-child {
+				margin: 30px 0 10px ;	
+			}
+		}
+		.footer-col-item {
+			width: 100% !important;
+			&:first-child {
+				margin-bottom: 10px;
+			}
+			+ .footer-col-item {
+				margin-top: 15px !important;
+			}
+		}
+	}
+
+}
+

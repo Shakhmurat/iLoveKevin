@@ -12,6 +12,7 @@
 
     <!-- build:css(.) styles/vendor.min.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/swiper/dist/css/swiper.min.css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -44,11 +45,6 @@
     {% block content %}{% endblock %}
 
     {% include "_partials/footer.njk" %}
-    
-    <div class="container">
-        <p>Cоздатели сайта: {{developers}}</p>
-    </div>
-
 
     <!-- build:js(.) scripts/vendor.min.js -->
     <!-- bower:js -->
@@ -59,6 +55,7 @@
     {% endif %}
 
     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+    <script src="bower_components/swiper/dist/js/swiper.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
