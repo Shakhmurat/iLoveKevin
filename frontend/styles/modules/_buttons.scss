@@ -27,9 +27,11 @@
 
 .btn--primary {
 	min-width: 300px;
-	padding: 18px 12px 16px;
+	padding: 18.5px 12px 16px;
+	margin-top: 1px;
 	font-size: 12px;
 	line-height: 14px;
+	letter-spacing: 1.2px;
 	background-color: $color-pink;
 	&.disabled {
 		background-color: $color-pink-secondary;
@@ -39,25 +41,13 @@
 	&:active {
 		background-color: rgba($color-pink,.8);
 	}
-
-	&.btn--success {
-		// background-color: $color-green;
-		box-shadow: 8px 8px 16px 0 rgba(#07021E, .1);
-		&:hover,
-		&:active {
-			background-color: #4DBE73;
-		}
-		&:active  {
-			box-shadow: inset -1px 1px 12px rgba(#07021E, .15), 5px 5px 16px 0 rgba(#07021E, .08);
-		}
-	}
 }
 
 .btn--secondary {
-	min-width: 100px;
-	padding: 9px 0 7px;
+	padding: 9px 18px 7px;
 	font-size: 10px;
 	line-height: 12px;
+	text-decoration: none;
 }
 
 .btn.btn-vk {
