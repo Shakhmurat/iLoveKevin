@@ -3,16 +3,20 @@
 	display: inline-block;
 	font-family: $font-primary-extra-bold;
 	font-size: 30px;
-	line-height: 35px
+	line-height: 1;
 }
 
 .title--hero {
-	margin-bottom: 40px;
+	max-width: 590px;
+	margin-bottom: 29px;
 	font-family: $font-secondary-bold;
 	font-size: 44px;
 	line-height: 40px;
 	font-weight: normal;
 	font-style: normal;
+	&:first-child {
+		margin-bottom: 0;
+	}
 }
 
 .title--primary,
@@ -33,7 +37,8 @@
 }
 
 .about-list-item-title {
+	margin-bottom: 6px;
 	font-family: $font-primary-bold;
 	font-size: 16px;
-	line-height: 19px;
+	line-height: 21px;
 }
