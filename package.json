@@ -1,11 +1,11 @@
 {
-  "name": "rocketfirm-frontend-template",
-  "version": "2.0.0",
+  "name": "iLoveKevin",
+  "version": "1.0.0",
   "private": true,
-  "description": "frontend template for Rocketfirm 2017",
+  "description": "iLoveKevin",
   "repository": {
     "type": "git",
-    "url": "git@gitlab.rocketfirm.net:rocketfirm/rocket-frontend.git"
+    "url": "git@github.com:Shakhmurat/iLoveKevin.git"
   },
   "devDependencies": {
     "apache-server-configs": "^2.14.0",
@@ -33,7 +33,6 @@
     "gulp-stylelint": "^3.7.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.0",
-    "main-bower-files": "^2.13.1",
     "postcss-color-rgba-fallback": "^2.2.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-hexrgba": "^0.2.1",
@@ -42,5 +41,8 @@
   },
   "engines": {
     "node": ">=4"
+  },
+  "dependencies": {
+    "swiper": "^3.0.0"
   }
 }
