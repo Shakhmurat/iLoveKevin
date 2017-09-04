@@ -12,10 +12,6 @@
 // 'gulp build'
 // build project (with html files and pics folder, without admin styles and scripts)
 // ***
-// 'gulp build:prod'
-// build project for production (without html files and pics folder, with admin styles and scripts)
-// use for deploy
-// ***
 // 'gulp size'
 // get size of web/ folder (without media/ folder)
 // ***
@@ -28,10 +24,9 @@
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync');
-const reload  = browserSync.reload;
+const reload = browserSync.reload;
 const webpack = require('webpack-stream');
 const named = require('vinyl-named');
-const mainBowerFiles = require('main-bower-files');
 const del = require('del');
 
 const cssnext = require('postcss-cssnext');
@@ -46,49 +41,33 @@ const PATHS = {
   build: 'web'
 };
 
-// put all the admin css plugins here
-const adminStylesPlugins = [
-  'bower_components/nifty-modal/lib/nifty.min.css',
-  'bower_components/bootstrap/dist/css/bootstrap.css',
-  'bower_components/font-awesome/css/font-awesome.min.css',
-  'bower_components/animate.css/animate.min.css',
-  'bower_components/PACE/themes/green/pace-theme-minimal.css',
-  'bower_components/Jcrop/css/Jcrop.css',
-  PATHS.src + '/styles/admin/fontello.css'
-];
-
-// put all the admin js plugins here
-const adminScriptsPlugins = [
-  'bower_components/bootstrap/dist/js/bootstrap.min.js',
-  'bower_components/jquery-ui/ui/widget.js',
-  'bower_components/jquery-file-upload/js/jquery.fileupload.js',
-  'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
-  'bower_components/jcrop/js/jquery.Jcrop.js',
-  'bower_components/jquery-ui-touch-punch-improved/jquery.ui.touch-punch-improved.js',
-  'bower_components/fastclick/lib/fastclick.js',
-  'bower_components/blockUI/jquery.blockUI.js',
-  'bower_components/bootbox.js/bootbox.js',
-  'bower_components/nifty-modal/lib/nifty.min.js',
-  'bower_components/PACE/pace.min.js',
-  'bower_components/Jcrop/js/Jcrop.min.js'
-];
 
 // variable for production mode
 var productionMode;
+var isBuild = false;
 
 
 // VIEWS
 // nunjucks:)
-gulp.task('views', () => {
+gulp.task('views',['favicon'], () => {
   return gulp.src(PATHS.src + '/views/*.njk')
     .pipe($.plumber()).on('error', function(err) { console.error(err); })
     .pipe($.nunjucksRender({
-      path: PATHS.src + '/views', 
-      data: { markup: !productionMode } 
+      path: PATHS.src + '/views',
+      data: { markup: !productionMode }
     }))
     .pipe(gulp.dest(PATHS.tmp))
     .pipe($.if(browserSync.active, reload({stream: true, once: true})));
 });
+
+
+//favicon
+
+gulp.task('favicon', () => {
+  return gulp.src('./' + PATHS.src + '/favicon.ico')
+    .pipe(isBuild ? gulp.dest(PATHS.build + '/') : gulp.dest(PATHS.tmp + '/'));
+})
+
 
 
 // STYLES
@@ -110,28 +89,6 @@ gulp.task('styles', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('styles-admin-main', () => {
-  return gulp.src(PATHS.src + '/styles/admin/*.css')
-    .pipe($.concat('admin-main.css'))
-    .pipe($.postcss([
-      cssnano()
-    ]))
-    .pipe(gulp.dest(PATHS.build + '/styles'));
-});
-
-gulp.task('styles-admin-plugins', () => {
-  return gulp.src(adminStylesPlugins)
-    .pipe($.concat('admin-plugins.css'))
-    .pipe($.postcss([
-      cssnano()
-    ]))
-    .pipe(gulp.dest(PATHS.build + '/styles'));
-});
-
-//build admin styles (two tasks) 
-gulp.task('styles-admin', function() {
-  gulp.start('styles-admin-main', 'styles-admin-plugins');
-});
 
 
 // SCRIPTS
@@ -167,27 +124,7 @@ gulp.task('scripts', () => {
     .pipe($.if(browserSync.active, reload({stream: true, once: true})));
 });
 
-gulp.task('scripts-admin-main', () => {
-  return gulp.src(PATHS.src + '/scripts/admin/*.js')
-    .pipe($.babel({
-      presets: ['es2015']   
-    }))
-    .pipe($.concat('admin-main.js'))
-    .pipe($.uglify())
-    .pipe(gulp.dest(PATHS.build + '/scripts'));
-});
 
-gulp.task('scripts-admin-plugins', () => {
-  return gulp.src(adminScriptsPlugins)
-    .pipe($.concat('admin-plugins.js'))
-    .pipe($.uglify())
-    .pipe(gulp.dest(PATHS.build + '/scripts'));
-});
-
-//build admin scripts (two tasks) 
-gulp.task('scripts-admin', function() {
-  gulp.start('scripts-admin-main', 'scripts-admin-plugins');
-});
 
 
 // USEREF
@@ -203,7 +140,7 @@ gulp.task('useref-assets', ['views', 'styles', 'scripts'], () => {
     .pipe( $.if('*.js', $.uglify({compress: { drop_console: true }})
       .on('error', function(err) { console.error(err); })) )
     .pipe( $.if('*.css', $.postcss([cssnano({ safe: true, autoprefixer: false })])) )
-    .pipe( $.if('!*.html', gulp.dest(PATHS.build)) ) 
+    .pipe( $.if('!*.html', gulp.dest(PATHS.build)) )
 });
 
 gulp.task('useref', ['useref-assets'], () => {
@@ -211,32 +148,15 @@ gulp.task('useref', ['useref-assets'], () => {
   return gulp.src(PATHS.tmp + '/*.html')
     .pipe($.prettify({indent_size: 2, eol: '\r\n'}))
     .pipe($.useref({noAssets: true}))
-    .pipe( productionMode ? $.if('!*.html', gulp.dest(PATHS.build)) : gulp.dest(PATHS.build) ) 
+    .pipe( productionMode ? $.if('!*.html', gulp.dest(PATHS.build)) : gulp.dest(PATHS.build) )
 });
 
 
 // FONTS
-// copy fonts from Bootstrap and font-awesome as they don't include their fonts in their bower.json file
-gulp.task('copy-bs-fonts', function() {
-  return gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.{eot,svg,ttf,woff,woff2}')
-    .pipe(gulp.dest(PATHS.src + '/fonts/'));
-});
 
-gulp.task('copy-fa-fonts', function() {
-  return gulp.src('bower_components/font-awesome/fonts/*.{eot,svg,ttf,woff,woff2}')
-    .pipe(gulp.dest(PATHS.src + '/fonts/'));
-});
-
-// this task should be called manually if we need bs or fa fonts
-// it copies these fonts to fonts/ folder
-gulp.task('put-fonts', () => {
-  gulp.start('copy-bs-fonts', 'copy-fa-fonts');
-});
 
 gulp.task('fonts', () => {
-  return gulp.src(mainBowerFiles('**/*.{eot,svg,ttf,woff,woff2}', function(err) {
-    if (err !== null) console.log(err);
-  }).concat(PATHS.src + '/fonts/**/*'))
+  return gulp.src(PATHS.src + '/fonts/**/*')
     .pipe(gulp.dest(PATHS.build + '/fonts'))
     .pipe($.if(browserSync.active, reload({stream: true, once: true})));
 });
@@ -264,12 +184,6 @@ gulp.task('pics', () => {
     .pipe($.if(browserSync.active, reload({stream: true, once: true})));
 });
 
-
-// COPY I/ FOLDER (TODO: maybe remove it or unite with other task)
-gulp.task('icons', () => {
-  return gulp.src(PATHS.src + '/i/**/*')
-    .pipe(gulp.dest(PATHS.build + '/i'));
-});
 
 
 // clear cache for images tasks
@@ -306,7 +220,7 @@ gulp.task('extras', () => {
 
 // ESLINT
 gulp.task('eslint', () => {
-  return gulp.src([PATHS.src + '/scripts/**/*.js', '!' + PATHS.src + '/scripts/admin/*.js'])
+  return gulp.src([PATHS.src + '/scripts/**/*.js'])
     .pipe($.eslint({
       fix: false
     }))
@@ -317,16 +231,15 @@ gulp.task('eslint', () => {
 // STYLELINT
 gulp.task('stylelint', () => {
   return gulp.src([
-    PATHS.src + '/styles/**/*.scss', 
-    '!' + PATHS.src + '/styles/admin/*.css',
+    PATHS.src + '/styles/**/*.scss',
     '!' + PATHS.src + '/styles/main.scss',
-    '!' + PATHS.src + '/styles/_fonts.scss'  
+    '!' + PATHS.src + '/styles/_fonts.scss'
   ])
   .pipe( $.stylelint({
     failAfterError: !browserSync.active ? true : false,
-    reporters: [{ 
-      formatter: 'string', 
-      console: true 
+    reporters: [{
+      formatter: 'string',
+      console: true
     }],
     debug: true
   }));
@@ -335,7 +248,7 @@ gulp.task('stylelint', () => {
 
 // CLEAN
 gulp.task('clean', del.bind(null, [
-  // add paths to files and folders 
+  // add paths to files and folders
   // that we don't want to remove from web/
   '.tmp',
   'web/**',
@@ -368,10 +281,10 @@ gulp.task('serve', ['views', 'styles', 'scripts'], () => {
     server: {
       baseDir: [PATHS.tmp, PATHS.src],
       routes: {
-        '/bower_components': 'bower_components'
+        '/node_modules': 'node_modules'
       }
     },
-    logPrefix: 'RocketfirmDev',
+    logPrefix: 'Shahmurat',
     // logLevel: 'debug',
     logConnections: true,
     ghostMode: false
@@ -401,43 +314,23 @@ gulp.task('serve:web', () => {
 // build for markup
 gulp.task('build-markup', [
   'productionModeFalse',
-  'useref', 
-  'images', 
-  'pics', 
+  'views',
+  'useref',
+  'images',
+  'pics',
   'fonts',
   'extras'
   ], () => {
   return gulp.src([PATHS.build + '/**/*', '!' + PATHS.build + '/media/**/*'])
     .pipe($.size({
-      title: 'build', 
+      title: 'build',
       gzip: true
     }));
 });
 
-gulp.task('build', ['clean'], () => {
+
+gulp.task('build', ['clean'], ()=>{
   gulp.start('build-markup');
-});
-
-// build for production
-gulp.task('build-production', [
-  'productionModeTrue',
-  'useref', 
-  'images', 
-  'icons',
-  'fonts',
-  'styles-admin', 
-  'scripts-admin',
-  'extras'
-  ], () => {
-  return gulp.src([PATHS.build + '/**/*.*', '!' + PATHS.build + '/media/**/*.*'])
-    .pipe($.size({
-      title: 'build', 
-      gzip: true
-    }));
-});
-
-gulp.task('build:prod', ['clean'], () => {
-  gulp.start('build-production');
 });
 
 
@@ -447,11 +340,11 @@ gulp.task('build:prod', ['clean'], () => {
 // get total size of web/ except media/ folder
 gulp.task('size', () => {
   return gulp.src([
-      PATHS.build + '/**/*', 
+      PATHS.build + '/**/*',
       '!' + PATHS.build + '/media/**/*'
     ])
     .pipe($.size({
-      title: 'web/', 
+      title: 'web/',
       gzip: true
     }));
 });
@@ -462,7 +355,7 @@ gulp.task('size:all', () => {
       PATHS.build + '/**/*'
     ])
     .pipe($.size({
-      title: 'web/', 
+      title: 'web/',
       gzip: true
     }));
 });
@@ -474,7 +367,7 @@ gulp.task('size:styles', () => {
     ])
     .pipe($.size({
       title: 'styles',
-      showFiles: true, 
+      showFiles: true,
       gzip: true
     }));
 });
@@ -485,7 +378,7 @@ gulp.task('size:scripts', () => {
       PATHS.build + '/scripts/**/*'
     ])
     .pipe($.size({
-      title: 'scripts', 
+      title: 'scripts',
       showFiles: true,
       gzip: true
     }));
@@ -497,7 +390,7 @@ gulp.task('size:images', () => {
       PATHS.build + '/images/**/*'
     ])
     .pipe($.size({
-      title: 'images', 
+      title: 'images',
       gzip: true
     }));
 });
@@ -508,7 +401,7 @@ gulp.task('size:fonts', () => {
       PATHS.build + '/fonts/**/*'
     ])
     .pipe($.size({
-      title: 'fonts', 
+      title: 'fonts',
       gzip: true
     }));
 });
@@ -519,7 +412,7 @@ gulp.task('size:media', () => {
       PATHS.build + '/media/**/*'
     ])
     .pipe($.size({
-      title: 'media', 
+      title: 'media',
       gzip: true
     }));
 });
@@ -530,6 +423,7 @@ gulp.task('size:detailed', () => {
 
 // default 'gulp' task
 // builds for markup with html files and pics/ folder
-gulp.task('default', ['clean'], () => {
+gulp.task('default', () => {
+  isBuild = true;
   gulp.start('build');
 });
